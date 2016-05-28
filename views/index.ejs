@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Events Calendar</title>
+    <link rel="shortcut icon" href="favicon.png">
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,800,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/demo.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/set1.css"/>
+</head>
+<body>
+<div class="container">
+
+    <!--<header class="codrops-header">-->
+    <!--<h1>Events Calendar</h1>-->
+    <!--</header>-->
+
+    <div class="content">
+
+        <!--<h2>Winter</h2>-->
+        <div class="grid">
+            <figure class="effect-sadie">
+                <img src="img/4.jpg" alt="img14"/>
+                <figcaption>
+                    <h2><span>Декабрь</span></h2>
+                </figcaption>
+            </figure>
+            <figure class="effect-sadie">
+                <img src="img/11.jpg" alt="img02"/>
+                <figcaption>
+                    <h2><span>Январь</span></h2>
+                </figcaption>
+            </figure>
+            <figure class="effect-sadie">
+                <img src="img/17.jpg" alt="img14"/>
+                <figcaption>
+                    <h2><span>Февраль</span></h2>
+                </figcaption>
+            </figure>
+            <figure class="effect-sadie">
+                <img src="img/27.jpg" alt="img14"/>
+                <figcaption>
+                    <h2><span>Март</span></h2>
+                </figcaption>
+            </figure>
+            <figure class="effect-sadie">
+                <img src="img/20.jpg" alt="img02"/>
+                <figcaption>
+                    <h2><span>Апрель</span></h2>
+                </figcaption>
+            </figure>
+            <figure class="effect-sadie">
+                <img src="img/24.jpg" alt="img14"/>
+                <figcaption>
+                    <h2><span>Май</span></h2>
+                </figcaption>
+            </figure>
+            <figure class="effect-sadie">
+                <img src="img/16.jpg" alt="img14"/>
+                <figcaption>
+                    <h2><span>Июнь</span></h2>
+                </figcaption>
+            </figure>
+            <figure class="effect-sadie">
+                <img src="img/6.jpg" alt="img14"/>
+                <figcaption>
+                    <h2><span>Июль</span></h2>
+                </figcaption>
+            </figure>
+            <figure class="effect-sadie">
+                <img src="img/12.jpg" alt="img14"/>
+                <figcaption>
+                    <h2><span>Август</span></h2>
+                </figcaption>
+            </figure>
+            <figure class="effect-sadie">
+                <img src="img/15.jpg" alt="img14"/>
+                <figcaption>
+                    <h2><span>Сентябрь</span></h2>
+                </figcaption>
+            </figure>
+            <figure class="effect-sadie">
+                <img src="img/17.jpg" alt="img14"/>
+                <figcaption>
+                    <h2><span>Октябрь</span></h2>
+                </figcaption>
+            </figure>
+            <figure class="effect-sadie">
+                <img src="img/11.jpg" alt="img14"/>
+                <figcaption>
+                    <h2><span>Ноябрь</span></h2>
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+</div><!-- /container -->
+<script src="/jquery/dist/jquery.min.js"></script>
+<script>
+    // For Demo purposes only (show hover effect on mobile devices)
+    [].slice.call(document.querySelectorAll('.content a')).forEach(function (el) {
+        el.onclick = function () {
+            return false;
+        }
+    });
+</script>
+<script>
+    $('.grid figure').on('click', function (e) {
+        var index = $(this).index();
+        index = (index + 11) % 12;
+        if (index < 9) {
+            index = '0' + (index + 1);
+        } else {
+            index = index + 1;
+        }
+        var currentYear = (new Date()).getFullYear();
+        window.location.href = '/events/' + currentYear + '-' + index;
+    })
+</script>
+</body>
+</html>

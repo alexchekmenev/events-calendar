@@ -1,0 +1,295 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Material Design Lite</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="/img/android-desktop.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="/img/ios-desktop.png">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.deep_purple-pink.min.css">
+    <link href="/air-datepicker/dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="mdl-layout__container mdl-color--grey-100 mdl-color-text--grey-700">
+    <div class="mdl-layout mdl-js-layout">
+        <main class="mdl-layout__content">
+            <div class="events-wrapper" style="margin: 0 auto; max-width: 800px; padding-top: 20px">
+
+                <section class="section--center mdl-grid mdl-grid--no-spacing">
+                    <div class="mdl-cell mdl-cell--6-col mdl-typography--text-left">
+                        <a href="/" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                            На главную
+                        </a>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-typography--text-right"></div>
+                </section>
+
+                <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" style="margin-top: 20px">
+                    <div class="mdl-card mdl-cell--12-col">
+                        <div class="mdl-card__title mdl-typography--text-center">
+                            <strong>Добавление нового события</strong>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            <form id="event-form">
+                                <div class="mdl-grid">
+                                    <input type="hidden" id="event_id" name="_id" />
+                                    <div class="mdl-cell mdl-cell--4-col">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <label class="mdl-textfield__label" for="datepicker">Дата</label>
+                                            <input id="datepicker" class="mdl-textfield__input" type="text" name="date"/>
+                                        </div><br>
+                                    </div>
+                                    <div class="mdl-cell mdl-cell--8-col">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <label class="mdl-textfield__label" for="name">Название</label>
+                                            <input class="mdl-textfield__input" type="text" id="name" style="width: 100%"/>
+                                        </div>
+                                    </div>
+                                    <div class="mdl-cell mdl-cell--12-col">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%">
+                                            <label class="mdl-textfield__label" for="description">Описание</label>
+                                            <textarea class="mdl-textfield__input" id="description" rows="2"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="mdl-cell mdl-cell--12-col mdl-typography--text-center">
+                                        <!-- Raised button with ripple -->
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                            Сохранить
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section--center mdl-grid mdl-grid--no-spacing" style="margin-top: 20px">
+                    <ul class="mdl-list" id="events-list">
+
+                        <li class="mdl-list__item mdl-list__item--three-line">
+                            <span class="mdl-list__item-primary-content">
+                              <i class="material-icons">event</i>
+                              <span>Bryan Cranston</span>
+                              <span class="mdl-list__item-text-body">
+                                Bryan Cranston played the role of Walter in Breaking Bad. He is also known
+                                for playing Hal in Malcom in the Middle.
+                              </span>
+                            </span>
+                            <span class="mdl-list__item-secondary-content">
+                              <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+                            </span>
+                        </li>
+                    </ul>
+                </section>
+
+            </div>
+        </main>
+    </div>
+</div>
+
+
+<script src="/jquery/dist/jquery.min.js"></script>
+<script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+<script src="/air-datepicker/dist/js/datepicker.min.js"></script>
+<!-- Include English language -->
+<script src="/air-datepicker/dist/js/i18n/datepicker.en.js"></script>
+<script>
+    var start = new Date('<%= start %>');
+    var end = new Date('<%= end %>');
+
+    $('#datepicker').datepicker({
+        minDate: start,
+        maxDate: end,
+        dateFormat: 'yyyy-mm-dd',
+        onSelect: function(formattedDate, date, inst) {
+            console.log(arguments);
+        }
+    });
+    var render = function() {
+        console.log('render');
+        getEvents(function(events) {
+            $('.edit-action').off('click');
+            $('.delete-action').off('click');
+            $('#events-list').html('');
+            events.data.forEach(function(event) {
+                var date = new Date(event.date);
+                var dateStr = date.getDate()+'/'+(date.getMonth() < 9 ? '0'+(date.getMonth() + 1) : '0'+date.getMonth());
+                var str = '<li class="mdl-list__item mdl-list__item--three-line">'+
+                        '<span class="mdl-list__item-primary-content">'+
+                        '<i class="material-icons">event</i>'+
+                        '<span>'+dateStr+': '+event.name+'</span>'+
+                        '<span class="mdl-list__item-text-body">'+event.description+'</span>'+
+                        '</span>'+
+                        '<span class="mdl-list__item-secondary-content">'+
+                        '<a class="mdl-list__item-secondary-action edit-action" data-id="'+event._id+'" href="#"><i class="material-icons">create</i></a>'+
+                        '<a class="mdl-list__item-secondary-action delete-action" data-id="'+event._id+'" href="#"><i class="material-icons">delete</i></a>'+
+                        '</span>'+
+                        '</li>';
+                $('#events-list').append(str);
+            });
+            $('.edit-action').on('click', function() {
+                console.log('edit-action');
+                var id = $(this).attr('data-id');
+                $('#event_id').val(id);
+                //e.preventDefault();
+            });
+
+            $('.delete-action').on('click', function() {
+                console.log('delete-action');
+                var id = $(this).attr('data-id');
+                removeEvent(id, function() {
+                    render();
+                });
+                //e.preventDefault();
+            });
+        });
+    }
+
+    var getEvents = function(callback) {
+        $.ajax({
+            url: '/events',
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                start: start.toISOString(),
+                end: end.toISOString()
+            },
+            success: function(events) {
+                console.log(events);
+                callback(events);
+            }
+        });
+    }
+
+    var getEvent = function(id, callback) {
+        $.ajax({
+            url: '/events/'+id,
+            type: 'GET',
+            dataType: 'json',
+            success: function(events) {
+                console.log(events);
+                callback(events);
+            },
+            error: function(error) {
+                callback(error);
+            }
+        });
+    }
+
+    var addEvent = function(data, callback) {
+        console.log('addEvent', data);
+        $.ajax({
+            url: '/events',
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            error: function(error) {
+                if (error.status == 201) {
+                    callback();
+                }
+            }
+        });
+    };
+
+    var updateEvent = function(data, callback) {
+        $.ajax({
+            url: '/events',
+            type: 'PUT',
+            dataType: 'json',
+            data: data,
+            success: function(events) {
+                console.log(events);
+                callback(events);
+            },
+            error: function(error) {
+                if (error.status == 200) {
+                    callback();
+                }
+            }
+        });
+    }
+    var removeEvent = function(id, callback) {
+        $.ajax({
+            url: '/events',
+            type: 'DELETE',
+            dataType: 'json',
+            data: {
+                id: id
+            },
+            success: function(events) {
+                console.log(events);
+                callback(events);
+            },
+            error: function(error) {
+                if (error.status == 200) {
+                    callback();
+                }
+            }
+        });
+    }
+
+    var parseData = function() {
+        return {
+            id: $('#event_id').val(),
+            date: $('#datepicker').val(),
+            name: $('#name').val(),
+            description: $('#description').val()
+        }
+    }
+
+    $('#event-form').on('submit', function(e) {
+        var eventId = $('#event_id').val();
+        if (eventId != null && eventId != '') {
+            updateEvent(parseData(), function() {
+                console.log('updateEvent.callback');
+                render();
+            })
+        }
+        addEvent(parseData(), function() {
+            console.log('addEvent.callback');
+            render();
+        })
+        e.preventDefault();
+    });
+
+    $(document).ready(function() {
+        render();
+    });
+
+</script>
+</body>
+</html>
