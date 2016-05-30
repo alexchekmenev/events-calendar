@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Event = require('../models/event').Event;
 var mongoose = require('../libs/mongoose');
-var ObjectID = require('mongodb').ObjectID;
+var ObjectID = require('mongodb').ObjectId;
 
 /* GET events listing page */
 router.get('/:date', function (req, res, next) {
@@ -43,10 +43,12 @@ router.get('/', function (req, res, next) {
 });
 
 /* GET events from start to end */
-router.get('/:id', function (req, res, next) {
+router.get('/id/:id', function (req, res, next) {
     var id = new ObjectID(req.params.id);
+    console.log(req.params.id);
     Event.findById(id, function (err, event) {
         if (err) return next(err);
+        console.log(event);
         if (event == null) {
             res.sendStatus(400);
             res.end();
@@ -78,10 +80,10 @@ router.put('/', function (req, res, next) {
     var date = new Date(req.body.date);
     var name = req.body.name;
     var desc = req.body.description;
-    var id = new ObjectID(req.params.id);
-    Event.findById(id, function(err, event) {
+    var id = new ObjectID(req.body.id);
+    Event.findOneAndUpdate({_id: id}, req.body, function(err, event) {
        if (err) return next(err);
-        if (event == null) {
+        /*if (event == null) {
             res.sendStatus(400);
             res.end();
         } else {
@@ -93,26 +95,16 @@ router.put('/', function (req, res, next) {
                 res.sendStatus(204);
                 res.end();
             });
-        }
+        }*/
+        res.sendStatus(204);
+        res.end();
     });
 });
 
 router.delete('/', function (req, res, next) {
-    var eid = new ObjectID(req.params.id);
-    console.log(eid);
-    /*Event.find({
-        _id: eid
-    }, function(err, events){
-       console.log(events);
-    });*/
-    console.log({
-        _id: ObjectID(eid)
-    });
-    Event.remove({
-        _id: new ObjectID(req.params.id)
-    }, function (err, events) {
-        if (err) return next(err);
-        console.log(events.result);
+    var eid = req.body.id;
+    Event.remove({_id: new ObjectID(eid)}, function(err) {
+       if (err) return next(err);
         res.sendStatus(204);
         res.end();
     });
